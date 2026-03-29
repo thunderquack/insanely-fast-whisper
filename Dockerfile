@@ -12,6 +12,7 @@ RUN apt-get update && apt-get install -y \
     python3-venv \
     ffmpeg \
     ca-certificates \
+    cuda-nvrtc-12-8 \
     && rm -rf /var/lib/apt/lists/*
 
 WORKDIR /app
@@ -19,8 +20,6 @@ WORKDIR /app
 RUN python3 -m pip install --upgrade pip setuptools wheel && \
     python3 -m pip install --index-url https://download.pytorch.org/whl/cu128 \
     torch torchvision torchaudio
-
-RUN apt-get install -y cuda-nvrtc-12-8 
 
 COPY pyproject.toml README.md /app/
 COPY src /app/src
