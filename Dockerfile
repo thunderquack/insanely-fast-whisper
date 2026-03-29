@@ -18,16 +18,13 @@ WORKDIR /app
 
 RUN python3 -m pip install --upgrade pip setuptools wheel && \
     python3 -m pip install --index-url https://download.pytorch.org/whl/cu128 \
-    torch torchvision torchaudio && \
-    python3 -m pip install \
-    transformers \
-    accelerate \
-    pyannote-audio>=3.1.0 \
-    setuptools>=68.2.2 \
-    rich>=13.7.0
+    torch torchvision torchaudio
+
+COPY pyproject.toml README.md /app/
+COPY src /app/src
+
+RUN python3 -m pip install .
 
 COPY . /app
-
-RUN python3 -m pip install --no-deps .
 
 ENTRYPOINT ["insanely-fast-whisper"]
