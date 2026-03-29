@@ -16,11 +16,14 @@ RUN apt-get update && apt-get install -y \
 
 WORKDIR /app
 
-COPY . /app
-
 RUN python3 -m pip install --upgrade pip setuptools wheel && \
     python3 -m pip install --index-url https://download.pytorch.org/whl/cu128 \
-    torch torchvision torchaudio && \
-    python3 -m pip install .
+    torch torchvision torchaudio
+
+COPY pyproject.toml README.md /app/
+
+RUN python3 -m pip install .
+
+COPY . /app
 
 ENTRYPOINT ["insanely-fast-whisper"]
