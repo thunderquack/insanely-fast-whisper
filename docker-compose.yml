@@ -4,6 +4,7 @@ services:
       context: .
       dockerfile: Dockerfile
     image: insanely-fast-whisper:cuda
+    gpus: all
     environment:
       HF_HOME: /cache/huggingface
       TRANSFORMERS_CACHE: /cache/huggingface
