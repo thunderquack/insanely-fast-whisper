@@ -19,7 +19,10 @@ WORKDIR /app
 
 RUN python3 -m pip install --upgrade pip setuptools wheel && \
     python3 -m pip install --index-url https://download.pytorch.org/whl/cu128 \
-    torch torchvision torchaudio
+    torch==2.8.0 \
+    torchvision==0.23.0 \
+    torchaudio==2.8.0 \
+    torchcodec==0.7
 
 COPY pyproject.toml README.md /app/
 COPY src /app/src
