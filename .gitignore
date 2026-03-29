@@ -163,3 +163,7 @@ cython_debug/
 
 .vscode/
 .idea/
+
+data/
+hf-cache/
+output.json
